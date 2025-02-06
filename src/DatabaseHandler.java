@@ -88,4 +88,71 @@ public class DatabaseHandler {
         }
         return false;
     }
+
+    public static boolean addAccount(Account account) {
+
+        try {
+            pstatement = getDBConnection().prepareStatement("INSERT INTO `admin` (Username, Password, AccountStatus) VALUES (?,?,?)");
+            pstatement.setString(1, account.getUsername());
+            pstatement.setString(2, account.getPassword());
+            pstatement.setString(3, account.getIsActive());
+            return pstatement.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return false;
+    }
+
+    public static ResultSet displayusers(){
+
+        ResultSet result = null;
+
+        try {
+            String query = "SELECT * FROM admin";
+            result = handler.execQuery(query);
+        
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        return result;
+    }
+
+    public static boolean deleteUser(User user) {
+        try {
+            String deleteStatement = "DELETE FROM `admin` WHERE Username = ?";
+            pstatement = getDBConnection().prepareStatement(deleteStatement);
+            pstatement.setString(1, user.getUsername());
+            int res = pstatement.executeUpdate();
+            if (res > 0) {
+                return true;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean updateUser(Account account) {
+        try {
+            String updateStatement = "UPDATE `admin` SET Username = ?, Password = ?, AccountStatus = ? WHERE Username = ?";
+            pstatement = getDBConnection().prepareStatement(updateStatement);
+            pstatement.setString(1, account.getUsername());
+            pstatement.setString(2, account.getPassword());
+            pstatement.setString(3, account.getIsActive());
+            pstatement.setString(4, account.getUsername());
+            int res = pstatement.executeUpdate();
+            if (res > 0) {
+                return true;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

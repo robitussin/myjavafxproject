@@ -46,10 +46,10 @@ public class LoginController {
 
             root = loader.load();
 
-            HomeController homeController = loader.getController();
-            // Pass username from textfield to displayName() method
+            // HomeController homeController = loader.getController();
+            // // Pass username from textfield to displayName() method
 
-            homeController.displayName(uname);
+            // homeController.displayName(uname);
 
             // Load stage and scene
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
