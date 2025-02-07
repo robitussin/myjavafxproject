@@ -130,9 +130,9 @@ public class HomeController implements Initializable{
             return false;
         }
 
-        Account account = new Account(username, password, "", status);
+        User user = new User(username, password, "", status);
 
-        if(DatabaseHandler.addAccount(account))
+        if(DatabaseHandler.addUser(user))
         {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setContentText("no successful");
@@ -194,9 +194,9 @@ public class HomeController implements Initializable{
             return false;
         }
 
-        Account account = new Account(username, password, "", status);
+        User user = new User(username, password, "", status);
 
-        if(DatabaseHandler.updateUser(account))
+        if(DatabaseHandler.updateUser(user))
         {
             System.out.println("Successful");
             loadData();
