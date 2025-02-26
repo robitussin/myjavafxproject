@@ -32,7 +32,6 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -40,12 +39,11 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomeController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TransactionsController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -86,36 +84,56 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="536.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-        <Label fx:id="homelabel" alignment="CENTER" layoutX="104.0" layoutY="9.0" prefHeight="40.0" prefWidth="66.0" style="&#10;" text="USER" textAlignment="CENTER" textFill="#111111" wrapText="false">
-          <font>
-            <Font size="20.0" />
-          </font>
-        </Label>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="104.0" style="&#10;" text="Welcome," textAlignment="CENTER" textFill="#111111" wrapText="false">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="usernametextfield" layoutX="89.0" layoutY="79.0" />
-            <TextField fx:id="passwordtextfield" layoutX="89.0" layoutY="119.0" />
-            <TextField fx:id="statustextfield" layoutX="89.0" layoutY="160.0" />
-            <Label layoutX="20.0" layoutY="83.0" text="username" />
-            <Label layoutX="19.0" layoutY="122.0" text="password" />
-            <Label layoutX="18.0" layoutY="164.0" text="status" />
-            <Button fx:id="btncreate" layoutX="48.0" layoutY="311.0" mnemonicParsing="false" onAction="#createuser" text="Create" />
-            <Button fx:id="btnupdate" layoutX="109.0" layoutY="311.0" mnemonicParsing="false" onAction="#updateuser" text="Update" />
-            <Button fx:id="btndelete" layoutX="172.0" layoutY="311.0" mnemonicParsing="false" onAction="#deleteuser" text="Delete" />
-            <TableView fx:id="mytable" layoutX="273.0" layoutY="60.0" prefHeight="218.0" prefWidth="329.0">
+            <TableView fx:id="mytable" layoutX="75.0" layoutY="33.0" prefHeight="200.0" prefWidth="491.0">
               <columns>
-                <TableColumn fx:id="usernamecol" prefWidth="75.0" text="username" />
-                <TableColumn fx:id="passwordcol" prefWidth="87.66665649414062" text="password" />
-                  <TableColumn fx:id="accountcreatedcol" prefWidth="101.3333740234375" text="accountcreated" />
-                  <TableColumn fx:id="statuscol" prefWidth="63.6666259765625" text="status" />
+                <TableColumn fx:id="transactionidcol" prefWidth="130.0" text="transactionid" />
+                <TableColumn fx:id="amountcol" prefWidth="90.0" text="amount" />
+                  <TableColumn fx:id="customeridcol" prefWidth="159.0" text="customerid" />
+                  <TableColumn fx:id="datecol" prefWidth="111.0" text="orderdate" />
               </columns>
             </TableView>
-            <Button fx:id="transactionsbtn" layoutX="518.0" layoutY="311.0" mnemonicParsing="false" onAction="#gototransactions" text="Transactions" />
+            <Label layoutX="12.0" layoutY="260.0" prefHeight="27.0" prefWidth="73.0" text="COUNT:">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Label>
+            <Label layoutX="12.0" layoutY="280.0" prefHeight="27.0" prefWidth="64.0" text="MIN:">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Label>
+            <Label layoutX="12.0" layoutY="300.0" text="MAX:">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Label>
+            <Label layoutX="12.0" layoutY="318.0" prefHeight="27.0" prefWidth="82.0" text="AVERAGE:">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Label>
+            <Label layoutX="11.0" layoutY="337.0" prefHeight="27.0" prefWidth="48.0" text="SUM:">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Label>
+            <Label fx:id="minlabel" layoutX="100.0" layoutY="282.0" prefHeight="17.0" prefWidth="28.0" text="???">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Label>
+            <Label fx:id="maxlabel" layoutX="97.0" layoutY="302.0" text="???">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Label>
+            <Label fx:id="averagelabel" layoutX="108.0" layoutY="320.0" prefHeight="17.0" prefWidth="56.0" text="???">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Label>
+            <Label fx:id="sumlabel" layoutX="88.0" layoutY="339.0" prefHeight="13.0" prefWidth="26.0" text="???">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Label>
+            <Label fx:id="countllabel" layoutX="103.0" layoutY="262.0" prefHeight="17.0" prefWidth="44.0" text="???">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Label>
       </children>
     </AnchorPane>
   </children>

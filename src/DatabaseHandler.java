@@ -148,4 +148,94 @@ public class DatabaseHandler {
         }
         return false;
     }
+
+    public static ResultSet displaytransactions() {
+
+        ResultSet result = null;
+
+        try {
+            String query = "SELECT * FROM transactions";
+            result = handler.execQuery(query);
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        return result;
+    }
+
+    public static ResultSet countTransactions() {
+
+        ResultSet result = null;
+
+        try {
+            String query = "SELECT COUNT(amount) as transactioncount FROM transactions";
+            result = handler.execQuery(query);
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        return result;
+    }
+
+    public static ResultSet getMinTransaction() {
+
+        ResultSet result = null;
+
+        try {
+            String query = "SELECT MIN(amount) as minimum FROM transactions";
+            result = handler.execQuery(query);
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        return result;
+    }
+
+    public static ResultSet getMaxTransaction() {
+
+        ResultSet result = null;
+
+        try {
+            String query = "SELECT MAX(amount) as maximum FROM transactions";
+            result = handler.execQuery(query);
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        return result;
+    }
+
+    public static ResultSet getSumTransaction() {
+
+        ResultSet result = null;
+
+        try {
+            String query = "SELECT SUM(amount) as transactionsum FROM transactions";
+            result = handler.execQuery(query);
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        return result;
+    }
+
+    public static ResultSet getAverageTransaction() {
+
+            ResultSet result = null;
+
+            try {
+                String query = "SELECT AVG(amount) as transactionaverage FROM transactions";
+                result = handler.execQuery(query);
+
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+
+            return result;
+        }
 }

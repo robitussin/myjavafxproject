@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -24,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javax.naming.spi.DirStateFactory;
 import javax.xml.transform.Templates;
+
 
 public class HomeController implements Initializable{
 
@@ -64,6 +66,10 @@ public class HomeController implements Initializable{
 
     @FXML
     TextField statustextfield;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
@@ -207,5 +213,17 @@ public class HomeController implements Initializable{
             System.out.println("unsuccessful");
             return false;
         }
+    }
+
+    @FXML
+    public void gototransactions(ActionEvent event) throws IOException{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Transactions.fxml"));
+        root = loader.load();
+        // Load stage and scene
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
